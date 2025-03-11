@@ -8,7 +8,7 @@
         <menuitem id="as_estate_settings_menu" name="Settings" parent="as_estate_menu_root" sequence="20"/>
             <menuitem id="as_estate_property_type_menu_action" name="Property Types" action="as_estate_type_model_action" parent="as_estate_settings_menu" sequence="10"/>
             <menuitem id="as_estate_property_tag_menu_action" name="Property Tags" action="as_estate_tag_model_action" parent="as_estate_settings_menu" sequence="20"/>
-            <menuitem id="menu_estate_property_wizard" name="Create Person Records" action="estate_property_wizard_action" parent="as_estate_first_level_menu" sequence="20"/>
+            <menuitem id="menu_estate_property_wizard" name="Create Person Records" action="estate_property_wizard_action" parent="as_estate_first_level_menu" sequence="20"></menuitem>
 </odoo>
 
 
