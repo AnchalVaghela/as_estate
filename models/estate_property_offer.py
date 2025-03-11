@@ -13,19 +13,18 @@ class as_estate_offer(models.Model):
         ('accepted','Accepted'),
         ('refused','Refused'),
     ],copy=False)
-
-    partner_id = fields.Many2one("res.partner", string="Buyer", required=True)
-    property_id = fields.Many2one("as.estate.model", string="Property", ondelete='cascade')
-    
-    property_type_id = fields.Many2one(
-        related='property_id.property_type_id',
-        store=True,
-        string='Property Type'
-    )
-    
-
     validity = fields.Integer(string="Validity (days)", default=7)
     date_deadline = fields.Date(string="Deadline", compute="_compute_date_deadline", inverse="_inverse_date_deadline", store=True)
+
+    company_id = fields.Many2one("res.company", string="Company", default=lambda self: self.env.company)
+    partner_id = fields.Many2one("res.partner", string="Buyer", required=True)
+    property_id = fields.Many2one("as.estate.model", string="Property", ondelete='cascade')
+    property_type_id = fields.Many2one(related='property_id.property_type_id',store=True,string='Property Type')
+    
+
+    _sql_constraints = [
+        ('check_price', 'check(price >= 0)','The price must be positive.')
+    ]
 
     @api.depends('create_date', 'validity')
     def _compute_date_deadline(self):
@@ -48,11 +47,6 @@ class as_estate_offer(models.Model):
     def action_refuse(self):
         for offer in self:
             offer.status = 'refused'
-
-
-    _sql_constraints = [
-        ('check_price', 'check(price >= 0)','The price must be positive.')
-    ]
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -1,18 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-    <data>
-        <menuitem id="as_estate_model_menu_root" name="Estate">
-            <menuitem id="test_first_level_menu" name="Advertisments">
-                <menuitem id="test_model_menu_action" action="as_estate_model_action"/>
-            </menuitem>
-            <menuitem id="test_first_level_menu1" name="Settings">
-                <menuitem id="test_model_menu_action1" action="as_estate_type_model_action"/>
-                <menuitem id="test_model_menu_action2" action="as_estate_tag_model_action"/>
-            </menuitem>
-        </menuitem>
-    </data>
+    <menuitem id="as_estate_menu_root" name="Estate Management" sequence="10"/>
+        <menuitem id="as_estate_first_level_menu" name="Estate Operations" parent="as_estate_menu_root" sequence="10"/>
+            <menuitem id="as_estate_model_menu_action" name="Properties" action="as_estate_model_action" parent="as_estate_first_level_menu" sequence="10"/>
+    
+        <menuitem id="as_estate_settings_menu" name="Settings" parent="as_estate_menu_root" sequence="20"/>
+            <menuitem id="as_estate_property_type_menu_action" name="Property Types" action="as_estate_type_model_action" parent="as_estate_settings_menu" sequence="10"/>
+            <menuitem id="as_estate_property_tag_menu_action" name="Property Tags" action="as_estate_tag_model_action" parent="as_estate_settings_menu" sequence="20"/>
+            <menuitem id="menu_estate_property_wizard" name="Create Person Records" action="estate_property_wizard_action" parent="as_estate_first_level_menu" sequence="20"/>
 </odoo>
 
 
